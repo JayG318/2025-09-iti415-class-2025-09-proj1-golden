@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerDash : MonoBehaviour
 {
     [Header("Inscribed")]
-    public float dashMultiplier = 3f;     // how much faster during dash
-    public float dashDuration = 0.2f;     // seconds the dash lasts
-    public float dashCooldown = 1.0f;     // seconds before dash is ready again
+    public float dashMultiplier = 3f;
+    public float dashDuration = 0.3f;
+    public float dashCooldown = 3.0f;
 
     [Header("Dynamic")]
     public bool isDashing = false;
@@ -18,13 +18,15 @@ public class PlayerDash : MonoBehaviour
     void Start()
     {
         pc = GetComponent<PlayerController>();
-        if (pc != null) baseSpeed = pc.speed;
+        if (pc != null)
+        {
+            baseSpeed = pc.speed;
+        }
+        GetComponent<TrailRenderer>().material.color = Color.white;
     }
 
     void Update()
     {
-        if (pc == null) return;
-
         if (dashTimer > 0f)
         {
             dashTimer -= Time.deltaTime;
@@ -34,6 +36,7 @@ public class PlayerDash : MonoBehaviour
                 pc.speed = baseSpeed;
                 isDashing = false;
                 cooldownTimer = dashCooldown;
+                GetComponent<TrailRenderer>().material.color = Color.white;
             }
         }
 
@@ -45,6 +48,8 @@ public class PlayerDash : MonoBehaviour
             isDashing = true;
             pc.speed = baseSpeed * dashMultiplier;
             dashTimer = dashDuration;
+            GetComponent<TrailRenderer>().material.color = Color.cyan;
         }
+
     }
 }
