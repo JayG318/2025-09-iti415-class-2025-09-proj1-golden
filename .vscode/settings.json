@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "2025-09-proj1-JayG318.sln"
+    "dotnet.defaultSolution": "2025-09-iti415-class-2025-09-proj1-golden.sln"
 }
